@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { MultiSelect } from "primereact/multiselect";
 import { Toast } from "primereact/toast";
 import { ProgressSpinner } from "primereact/progressspinner";
+import images from "../assets/images";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -95,15 +96,80 @@ function ProductList() {
     filterProductsByPrice();
   }, [selectedPrice, allProduct, products]);
 
+  const branchs = [
+    {
+      image: images.apple,
+      alt: "apple",
+      uri: "/dienthoai/iphone",
+    },
+    {
+      image: images.asus,
+      alt: "asus",
+      uri: "/dienthoai/asus",
+    },
+    {
+      image: images.honor,
+      alt: "honor",
+      uri: "/dienthoai/honor",
+    },
+    {
+      image: images.huawei,
+      alt: "huawei",
+      uri: "/dienthoai/huawei",
+    },
+    {
+      image: images.nokia,
+      alt: "nokia",
+      uri: "/dienthoai/nokia",
+    },
+    {
+      image: images.oppo,
+      alt: "oppo",
+      uri: "/dienthoai/oppo",
+    },
+    {
+      image: images.realme,
+      alt: "realme",
+      uri: "/dienthoai/realme",
+    },
+    {
+      image: images.samsung,
+      alt: "samsung",
+      uri: "/dienthoai/samsung",
+    },
+    {
+      image: images.vivo,
+      alt: "vivo",
+      uri: "/dienthoai/vivo",
+    },
+    {
+      image: images.all,
+      alt: "all",
+      uri: "/dienthoai",
+    },
+  ];
+
   return (
-    <div className="py-6 px-10 min-h-screen flex flex-col justify-center items-end">
+    <div className="py-6 px-4 min-h-screen flex flex-col justify-center items-end">
       {loading ? (
-        <div>
+        <div className="w-full flex justify-center items-center">
           <ProgressSpinner />
         </div>
       ) : (
         <>
           <Toast ref={toast} />
+          <div className="w-full flex justify-between">
+            {branchs.map((branch, index) => (
+                <a
+                  href={branch.uri}
+                  className="relative flex justify-center items-center mb-8 bg-radial md:p-3 p-2 rounded-full drop-shadow-xl hover:scale-125 transition-transform duration-200 ease-in-out"
+                >
+                  <div key={index}>
+                    <img className="relative z-10 md:w-10 md:h-10 w-6 h-6 object-contain rounded-full overflow-visible" src={branch.image} alt={branch.alt} />
+                  </div>
+                </a>
+            ))}
+          </div>
           <MultiSelect
             value={selectedPrice}
             onChange={(e) => setSelectedPrice(e.value)}
@@ -112,9 +178,9 @@ function ProductList() {
             display="chip"
             placeholder="Chọn khoảng giá tiền"
             maxSelectedLabels={3}
-            className="w-96 border border-priamry border-2"
+            className="md:w-96 w-68 border border-priamry border-2"
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 mt-10 w-full">
             {products.map((product, index) => (
               <Card
                 key={index}

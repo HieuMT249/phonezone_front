@@ -734,7 +734,7 @@ function Cart() {
                 </div>
                 {index < steps.length - 1 && (
                   <div
-                    className={`absolute top-1/2 left-28 w-56 border-dashed border-t-2 ${
+                    className={`absolute top-1/2 left-28 w-48 border-dashed border-t-2 ${
                       index < currentStep ? "border-primary" : "border-second"
                     }`}
                   ></div>

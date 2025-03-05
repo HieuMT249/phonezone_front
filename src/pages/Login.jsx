@@ -75,9 +75,9 @@ function Login() {
   };
 
   return (
-    <div className="flex justify-between min-h-screen bg-gradient-15 p-40 pt-20">
+    <div className="flex md:justify-between justify-center min-h-screen bg-gradient-15 md:p-40 pt-20">
       {/* Image */}
-      <div className="flex items-center pt-10">
+      <div className="flex items-center pt-10 hidden md:block">
         <img
           className="max-w-full h-auto"
           src={images.login}
@@ -90,7 +90,7 @@ function Login() {
 
       {/* Form */}
       <form
-        className="flex flex-col items-center border border-primary rounded-lg py-10 px-20 ml-40 bg-white shadow-lg"
+        className="flex flex-col items-center h-fit flex-1 border border-primary rounded-lg py-10 md:px-20 px-10 mx-4 md:ml-40 bg-white shadow-lg"
         onSubmit={handleLogin}
       >
         {/* Title */}
@@ -112,7 +112,7 @@ function Login() {
           <CiLock className="text-gray-400 mr-3 text-xl" />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
             className="outline-none flex-1 text-gray-700 placeholder-gray-400"
             onChange={(e) => setPassword(e.target.value)}
           />

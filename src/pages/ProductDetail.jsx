@@ -312,7 +312,7 @@ function ProductDetail() {
     <div>
       <Toast ref={toast} />
       {isCartVisible && !user && <CartPopUp onClose={handleAddCart} />}
-      <div className="flex justify-around min-w-96 py-6 px-32">
+      <div className="flex flex-col md:flex-row justify-around min-w-96 py-6 px-4">
         <div className="bg-white ">
           <Galleria
             className="min-w-96 bg-white"
@@ -384,11 +384,11 @@ function ProductDetail() {
           </div>
         )}
       </div>
-      <div className="relative flex justify-around text-3xl border border-2 border-transparent border-t-gray-200 pb-20 pt-10 mx-10">
+      <div className="relative flex flex-col md:flex-row justify-around text-3xl border border-2 border-transparent border-t-gray-200 pb-20 pt-10 mx-10">
         {product?.productDescription && productDetail?.outstandingFeatures ? (
           <>
             <div
-              className={`border bg-white drop-shadow-xl w-2/3 mr-4 rounded-xl p-4 overflow-hidden transition-all duration-500  ${
+              className={`border bg-white drop-shadow-xl md:w-2/3 mr-4 rounded-xl p-4 overflow-hidden transition-all duration-500  ${
                 isExpand ? "" : "max-h-[30rem]"
               }`}
             >
@@ -433,7 +433,7 @@ function ProductDetail() {
                 </p>
               ))}
             </div>
-            <div className="absolute bottom-0 -left-[16rem] flex justify-center items-center text-center my-6 w-full mx-auto">
+            <div className="absolute md:bottom-0 mt-8 right-1/4 pl-40 flex justify-center items-center text-center my-6 w-full mx-auto">
               {isExpand ? (
                 <button
                   onClick={toggleExpand}
@@ -456,7 +456,7 @@ function ProductDetail() {
                 </button>
               )}
             </div>
-            <div className="border bg-white drop-shadow-xl w-1/3 rounded-xl py-4 px-4 text-2xl max-h-[30rem] overflow-hidden">
+            <div className="border bg-white drop-shadow-xl md:w-1/3 mt-20 md:mt-0 rounded-xl py-4 px-4 text-2xl max-h-[30rem] overflow-hidden">
               <p className="font-bold text-center mb-4">Thông số kỹ thuật</p>
               <table className="table-auto text-lg bg-white border drop-shadow-xl">
                 <thead>
@@ -481,7 +481,7 @@ function ProductDetail() {
               <div className="absolute bottom-0 left-0 w-full bg-white">
                 <button
                   onClick={toggleDetails}
-                  className="relative left-[8rem] text-center my-6 mx-auto text-lg border border-second px-4 p-1 rounded hover:text-primary hover:border-primary"
+                  className="relative left-1/4 xl:ml-2 -ml-10 text-center my-6 text-lg border border-second px-4 p-1 rounded hover:text-primary hover:border-primary"
                 >
                   {isDetailsVisible ? "Thu gọn" : "Xem cấu hình chi tiết"}
                 </button>

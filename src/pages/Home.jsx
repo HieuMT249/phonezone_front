@@ -104,20 +104,20 @@ function Home() {
 
   return (
     <div className="min-h-screen">
-      <div className="relative flex justify-between h-[36rem] bg-gradient-15">
+      <div className="relative flex justify-between md:h-[36rem] bg-gradient-15">
         <Search />
-        <div className="pt-24 pl-28 mt-20 text-center">
-          <h1 className="font-bold mb-4">
+        <div className="lg:pl-28 md:pt-24 md:mt-10 lg:pl-12 text-center">
+          <h1 className="hidden lg:block font-bold mb-4 ">
             Khám phá những sản phẩm công nghệ đỉnh cao, nâng tầm cuộc sống với
             thiết bị hiện đại, thông minh.
           </h1>
-          <span>
+          <span className="hidden lg:block">
             Cập nhật xu hướng công nghệ mới nhất, chọn lựa thiết bị phù hợp để
             tối ưu hóa cuộc sống của bạn.
           </span>
         </div>
         <img
-          className="mr-20 mt-20"
+          className="px-10 mx-auto mt-10 lg:p-10 lg:mr-20 lg:mt-20 md:mr-10"
           src={images.background}
           alt="background-phonezone"
         />
@@ -126,7 +126,7 @@ function Home() {
         <span>Nhãn Hàng</span>
       </h1>
       <div>
-        <div className="grid grid-cols-5 gap-6 justify-items-center">
+        <div className="grid grid-cols-4 gap-3 md:grid-cols-5 md:gap-6 justify-items-center">
           {branchs.map((branch, index) => (
             <Branch
               key={index}

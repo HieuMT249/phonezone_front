@@ -17,7 +17,7 @@ function Card({
   const [isHover, setIsHover] = useState(false);
   const [user, setUser] = useState();
   const savedItems = JSON.parse(localStorage.getItem("wishlist")) || [];
-
+  
   const parseJwt = (token) => {
     try {
       const base64Url = token.split(".")[1];
@@ -93,7 +93,7 @@ function Card({
   const isProductInWishlist = savedItems.some((item) => item.Id === name);
 
   return (
-    <div className="relative border border-second min-h-96 bg-white rounded-2xl p-6 ml-6 hover:cursor-pointer drop-shadow-xl">
+    <div className="relative border border-second min-h-96 bg-white rounded-2xl p-6 md:ml-6 hover:cursor-pointer drop-shadow-xl">
       <div onClick={handleClick} className="">
         <img src={image} alt={productName} className="w-40 shadow-2 mx-auto" />
       </div>
@@ -106,12 +106,12 @@ function Card({
         </h4>
         <div
           onClick={handleClick}
-          className="flex justify-between items-center px-6"
+          className="flex flex-col xl:flex-row justify-between items-center px-6"
         >
           <span className="mt-0 mb-3 text-primary font-semibold">
             {newPrice}
           </span>
-          {oldPrice === "Không rõ giá" ? (
+          {oldPrice === "Không rõ giá" || oldPrice === "Không có giá cũ" ? (
             ""
           ) : (
             <span className="mt-0 mb-3 text-gray-300 text-sm line-through">

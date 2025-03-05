@@ -14,6 +14,7 @@ function CarouselProduct() {
     const fetchRandomProducts = async () => {
       try {
         const response = await axios.get("https://localhost:7274/api/Products");
+        console.log(products);
 
         const shuffledProducts = shuffleArray(response.data);
         setProducts(shuffledProducts);
@@ -26,6 +27,7 @@ function CarouselProduct() {
 
     fetchRandomProducts();
   }, []);
+
 
   const shuffleArray = (array) => {
     let shuffled = [...array];
@@ -43,7 +45,7 @@ function CarouselProduct() {
   return (
     <div className="px-10 flex flex-col items-end">
       {loading ? (
-        <div className="flex justify-content-center">
+        <div className="flex justify-content-center items-center w-full mb-10">
           <ProgressSpinner />
         </div>
       ) : (

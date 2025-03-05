@@ -82,7 +82,7 @@ function Search() {
         placeholder={`Tìm kiếm theo tên sản phẩm...`}
         className="absolute right-1/4 ml-48 border border-slate-400 outline-second rounded-full w-1/2 h-10 p-3 pl-8 text-xs"
       />
-      <i className="absolute left-[24.5rem] top-3">
+      <i className="absolute top-3 left-1/4 ml-3">
         <BiSearchAlt color="gray" />
       </i>
       {filteredProducts && (

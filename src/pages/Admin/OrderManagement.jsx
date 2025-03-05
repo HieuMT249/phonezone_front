@@ -59,22 +59,15 @@ export default function OrderManagement() {
     return user ? user.name : "Không rõ";
   };
 
-  // Xác định màu cho trạng thái đơn hàng
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "Giao hàng thành công":
-        return "success";
-      case "Đã xác nhận":
-        return "secondary";
-      case "Đang giao hàng":
-        return "info";
-      case "Đã hủy":
-        return "danger";
-      case "Chờ xác nhận":
-        return "warning";
-      default:
-        return "secondary";
-    }
+  const getStatusLabel = (status) => {
+    const statusMapping = {
+      warning: "Chờ xác nhận",
+      secondary: "Đã xác nhận",
+      info: "Đang giao hàng",
+      danger: "Đã hủy",
+      success: "Giao hàng thành công",
+    };
+    return statusMapping[status] || "Không rõ";
   };
 
   const actionTemplate = (rowData) => (
@@ -125,12 +118,13 @@ export default function OrderManagement() {
           header="Trạng thái"
           body={(rowData) => (
             <Tag
-              value={rowData.status}
-              severity={getStatusColor(rowData.status)}
+              value={getStatusLabel(rowData.status)} // Hiển thị nhãn trạng thái
+              severity={rowData.status} // Giữ nguyên giá trị gốc từ API để lấy màu đúng
               className="text-lg px-3 py-2 font-semibold"
             />
           )}
         />
+
         <Column field="paymentMethod" header="Phương thức thanh toán" />
         <Column
           field="createdDate"

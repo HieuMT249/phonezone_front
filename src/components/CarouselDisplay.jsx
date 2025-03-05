@@ -9,6 +9,8 @@ function CarouselDisplay({ user, setShowPopUp }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState(0);
+  const [newPriceD, setNewPrice] = useState();
+  const [oldPriceD, setOldPrice] = useState();
 
   const responsiveOptions = [
     {
@@ -17,17 +19,22 @@ function CarouselDisplay({ user, setShowPopUp }) {
       numScroll: 1,
     },
     {
-      breakpoint: "1199px",
-      numVisible: 3,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "767px",
+      breakpoint: "1024px",
       numVisible: 2,
       numScroll: 1,
     },
     {
-      breakpoint: "575px",
+      breakpoint: "820px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "768px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "431x",
       numVisible: 1,
       numScroll: 1,
     },
@@ -45,13 +52,42 @@ function CarouselDisplay({ user, setShowPopUp }) {
 
         const shockWithDiscount = shockResponse.data.map((product) => {
           const discount = Math.floor(Math.random() * 3) + 3;
-          return { ...product, discount: parseFloat(discount) };
+          const originalPrice = product.newPrice
+            .replace("đ", "")
+            .replace(/\./g, "")
+            .replace(/\,/g, "");
+          const originalPriceNumber = parseFloat(originalPrice);
+
+          const newCalculatedPrice =
+            originalPriceNumber - (originalPriceNumber * discount) / 100;
+
+          return {
+            ...product,
+            discount: parseFloat(discount),
+            newPrice: Intl.NumberFormat("vi-VN").format(newCalculatedPrice) + "đ",
+            oldPrice: Intl.NumberFormat("vi-VN").format(originalPriceNumber) + "đ",
+          };
         });
 
         const dealWithDiscount = dealResponse.data.map((product) => {
           const discount = Math.floor(Math.random() * 3) + 3;
-          return { ...product, discount: parseFloat(discount) };
+          const originalPrice = product.newPrice
+            .replace("đ", "")
+            .replace(/\./g, "")
+            .replace(/\,/g, "");
+          const originalPriceNumber = parseFloat(originalPrice);
+
+          const newCalculatedPrice =
+            originalPriceNumber - (originalPriceNumber * discount) / 100;
+
+          return {
+            ...product,
+            discount: parseFloat(discount),
+            newPrice: Intl.NumberFormat("vi-VN").format(newCalculatedPrice) + "đ",
+            oldPrice: Intl.NumberFormat("vi-VN").format(originalPriceNumber) + "đ",
+          };
         });
+
         setProductsShock(shockWithDiscount);
         setProductsDeal(dealWithDiscount);
       } catch (error) {
@@ -78,9 +114,9 @@ function CarouselDisplay({ user, setShowPopUp }) {
   };
 
   return (
-    <div className="p-10">
-      <div className="border border-second h-[36rem] rounded-3xl bg-gradient-15 p-10">
-        <div className="flex pl-12 mb-8">
+    <div className="md:p-10 p-4">
+      <div className="border border-second p-4 mt-10 h-[36rem] rounded-3xl bg-gradient-15 md:mt-0 md:p-10">
+        <div className="flex md:pl-12 mb-8">
           <div
             className={`text-center w-32 cursor-pointer ${
               activeTab === 0

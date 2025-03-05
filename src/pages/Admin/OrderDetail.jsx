@@ -78,19 +78,30 @@ export default function OrderDetail() {
 
   const getStatusSeverity = (status) => {
     switch (status) {
-      case "Chờ xác nhận":
-        return "warning";
-      case "Đang xử lý":
-        return "info";
-      case "Đang giao hàng":
-        return "primary";
-      case "Đã giao":
-        return "success";
-      case "Đã hủy":
-        return "danger";
+      case "warning":
+        return "warning"; // Chờ xác nhận
+      case "secondary":
+        return "secondary"; // Đã xác nhận
+      case "info":
+        return "info"; // Đang giao hàng
+      case "success":
+        return "success"; // Giao hàng thành công
+      case "danger":
+        return "danger"; // Đã hủy
       default:
-        return "secondary";
+        return "secondary"; // Mặc định là đã xác nhận
     }
+  };
+
+  const getStatusLabel = (status) => {
+    const statusMapping = {
+      warning: "Chờ xác nhận",
+      secondary: "Đã xác nhận",
+      info: "Đang giao hàng",
+      success: "Giao hàng thành công",
+      danger: "Đã hủy",
+    };
+    return statusMapping[status] || "Không rõ";
   };
 
   const handleUpdateStatus = async () => {
@@ -100,7 +111,7 @@ export default function OrderDetail() {
         {
           id: orderId,
           ...order,
-          status,
+          status, // Giữ nguyên trạng thái đã chọn
         }
       );
 
@@ -109,7 +120,7 @@ export default function OrderDetail() {
       toast.current.show({
         severity: "success",
         summary: "Thành công",
-        detail: `Cập nhật trạng thái thành: ${status}`,
+        detail: `Cập nhật trạng thái thành: ${getStatusLabel(status)}`,
         life: 3000,
       });
     } catch (error) {
@@ -156,7 +167,9 @@ export default function OrderDetail() {
           </p>
           <p>
             <strong>Trạng thái:</strong>{" "}
-            <Tag severity={getStatusSeverity(order.status)}>{order.status}</Tag>
+            <Tag severity={getStatusSeverity(order.status)}>
+              {getStatusLabel(order.status)}
+            </Tag>
           </p>
           <p>
             <strong>Phương thức thanh toán:</strong> {order.paymentMethod}
@@ -208,13 +221,13 @@ export default function OrderDetail() {
         </h3>
         <div className="grid grid-cols-2 gap-4 mt-2">
           <p>
-            <strong>Tổng tiền:</strong> {order.totalAmount} VND
+            <strong>Tổng tiền:</strong> {order.totalAmount}
           </p>
           <p>
-            <strong>Giảm giá:</strong> -{order.discountAmount} VND
+            <strong>Giảm giá:</strong> -{order.discountAmount}
           </p>
           <p className="text-xl font-bold text-red-600">
-            <strong>Thành tiền:</strong> {order.finalAmount} VND
+            <strong>Thành tiền:</strong> {order.finalAmount}
           </p>
         </div>
       </Card>

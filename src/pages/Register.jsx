@@ -120,9 +120,9 @@ function Register() {
   };
 
   return (
-    <div className="flex justify-between min-h-screen bg-gradient-15 p-40 pt-20">
+    <div className="flex md:justify-between justify-center min-h-screen bg-gradient-15 md:p-40 pt-20">
       {/* Left Section - Image */}
-      <div className="flex items-center pt-10">
+      <div className="flex items-center pt-10 hidden md:block">
         <img
           className="max-w-full h-auto"
           src={images.login}
@@ -135,7 +135,7 @@ function Register() {
 
       {/* Right Section - Form */}
       <form
-        className="flex flex-col items-center border border-primary rounded-lg py-10 px-20 ml-40 bg-white shadow-lg"
+        className="flex flex-col items-center h-fit flex-1 border border-primary rounded-lg py-10 md:px-20 px-10 mx-4 md:ml-40 bg-white shadow-lg"
         onSubmit={handleRegister}
       >
         {/* Title */}
@@ -168,7 +168,7 @@ function Register() {
           <HiOutlinePhone className="text-gray-400 mr-3 text-xl" />
           <input
             type="tel"
-            placeholder="Phone"
+            placeholder="Số điện thoại"
             className="outline-none flex-1 text-gray-700 placeholder-gray-400"
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -179,7 +179,7 @@ function Register() {
           <CiLock className="text-gray-400 mr-3 text-xl" />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
             className="outline-none flex-1 text-gray-700 placeholder-gray-400"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -190,7 +190,7 @@ function Register() {
           <CiLock className="text-gray-400 mr-3 text-xl" />
           <input
             type="password"
-            placeholder="Password Confirmation"
+            placeholder="Nhập lại mật khẩu"
             className="outline-none flex-1 text-gray-700 placeholder-gray-400"
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
@@ -220,9 +220,9 @@ function Register() {
 
         {/* Sign-in link */}
         <div className="text-sm text-gray-500 mt-6">
-          You are a member?{" "}
+          Bạn đã có tài khoản?{" "}
           <a href="/login" className="text-blue-500 hover:underline">
-            Sign in now
+            Đăng nhập ngay
           </a>
         </div>
       </form>

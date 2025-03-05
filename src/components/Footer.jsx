@@ -3,13 +3,13 @@ import { FiMail } from "react-icons/fi";
 
 function Footer() {
   return (
-    <div className="flex justify-between h-48 bg-black py-16 px-20">
-      <div className="text-5xl font-mono">
+    <div className="flex justify-between h-48 bg-black md:py-16 md:px-20 p-6">
+      <div className="md:text-5xl text-3xl font-mono">
         <span className="text-white">PHONE</span>
         <span className="text-primary">ZONE</span>
       </div>
 
-      <div className="text-white text-sm font-thin">
+      <div className="text-white text-sm font-thin md:block ml-4 md:ml-0">
         <div className="flex items-center">
           <i>
             <FaMapLocationDot />

@@ -111,7 +111,9 @@ export default function ChangePassword() {
         value={passwordData[name]}
         onChange={handleChange}
         toggleMask
-        className="w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+        className="w-full border border-gray-300 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        inputClassName="w-full"
+        feedback={false}
       />
     </div>
   );
@@ -127,7 +129,7 @@ export default function ChangePassword() {
       {renderInput("Xác nhận mật khẩu mới", "confirmPassword")}
       <Button
         label="Đổi mật khẩu"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md hover:shadow-lg"
         onClick={handleSubmit}
       />
     </div>

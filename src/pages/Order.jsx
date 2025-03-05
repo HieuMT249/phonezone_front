@@ -60,7 +60,6 @@ function Order() {
           user[
             "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
           ];
-
         const response = await axios.get(
           `https://localhost:7274/api/Orders/user/${userId}`
         );
@@ -141,12 +140,12 @@ function Order() {
             className="w-20 h-20 object-cover mr-4"
           />
           <div className="flex justify-between items-end w-full">
-            <p className="text-xl ml-10 font-bold">
+            <div className="text-xl ml-10 font-bold">
               <span>{productName}</span>
               <div className="text-lg mt-2">
                 Số lượng:<span className="ml-2 font-normal">{quantity}</span>
               </div>
-            </p>
+            </div>
             <p className="font-bold">
               Tổng tiền:{" "}
               <span className="ml-2 font-normal">{order.totalAmount}</span>
@@ -332,9 +331,9 @@ function Order() {
           Đã hủy
         </button>
         <button
-          onClick={() => handleButtonClick("Thành công")}
+          onClick={() => handleButtonClick("Giao hàng thành công")}
           className={`border ${getButtonClass(
-            "Thành công"
+            "Giao hàng thành công"
           )} px-6 py-4 rounded-md text-sm`}
         >
           Thành công

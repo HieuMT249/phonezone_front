@@ -22,6 +22,8 @@ import EditPhone from "../pages/Admin/EditPhone";
 import UserDetail from "../pages/Admin/UserDetail";
 import OrderDetail from "../pages/Admin/OrderDetail";
 import Analytics from "../pages/Admin/Analytics";
+import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 
 // Các trang không cần đăng nhập
 const publicRoutes = [
@@ -31,6 +33,8 @@ const publicRoutes = [
   { path: "/dienthoai", component: Product },
   { path: "/dienthoai/*", component: ProductList },
   { path: "/dienthoai/details/*", component: ProductDetail },
+  { path: "/forgot-password", component: ForgotPassword },
+  { path: "/reset-password/:token", component: ResetPassword },
 ];
 
 // Các trang cần đăng nhập

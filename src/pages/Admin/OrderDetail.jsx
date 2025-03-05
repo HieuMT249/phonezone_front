@@ -105,6 +105,15 @@ export default function OrderDetail() {
   };
 
   const handleUpdateStatus = async () => {
+    if (order.status === "danger") {
+      toast.current.show({
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Đơn hàng đã bị hủy, không thể thay đổi trạng thái!",
+        life: 3000,
+      });
+      return;
+    }
     try {
       await axios.put(
         `https://localhost:7274/api/admin/AdminOrder/${orderId}`,

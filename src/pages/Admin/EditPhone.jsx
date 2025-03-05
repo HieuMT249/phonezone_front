@@ -89,6 +89,8 @@ export default function EditPhone() {
   }, [id]);
 
   //Hàm kiểm tra validate
+  const priceRegex = /^\d{1,3}(\.\d{3})*đ$/;
+
   const validateForm = () => {
     if (!phoneData.productName) {
       showToast("error", "Lỗi", "Tên điện thoại không được để trống!");
@@ -98,8 +100,24 @@ export default function EditPhone() {
       showToast("error", "Lỗi", "Giá cũ không được để trống!");
       return false;
     }
+    if (!priceRegex.test(phoneData.oldPrice)) {
+      showToast(
+        "error",
+        "Lỗi",
+        "Giá cũ phải có định dạng đúng, ví dụ: 5.000.000đ hoặc 300.000đ!"
+      );
+      return false;
+    }
     if (!phoneData.newPrice) {
       showToast("error", "Lỗi", "Giá mới không được để trống!");
+      return false;
+    }
+    if (!priceRegex.test(phoneData.newPrice)) {
+      showToast(
+        "error",
+        "Lỗi",
+        "Giá mới phải có định dạng đúng, ví dụ: 5.000.000đ hoặc 300.000đ!"
+      );
       return false;
     }
     if (!phoneData.branch) {

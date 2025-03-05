@@ -580,6 +580,7 @@ function Cart() {
 
     if (timer === 0) {
       navigate("/");
+      window.location.reload();
     }
   }, [currentStep, timer, navigate]);
 
@@ -712,7 +713,7 @@ function Cart() {
           <span>Giỏ hàng của bạn đang trống</span>
           <span>Hãy chọn thêm sản phẩm để mua sắm nhé</span>
           <button
-            onClick={() => navigate("/")}
+            onClick={() => {navigate("/");window.location.reload();}}
             className="mt-10 font-normal border border-primary py-4 px-6 rounded-lg hover:bg-primary hover:text-white hover:scale-125 transition-transform duration-200 ease-in-out"
           >
             Quay lại trang chủ

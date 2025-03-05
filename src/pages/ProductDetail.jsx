@@ -366,7 +366,7 @@ function ProductDetail() {
               <div className="flex items-center mt-10">
                 <div
                   onClick={() => handleBuyNow(userInfo.id, id)}
-                  className="text-center text-white bg-primary hover:opacity-60 px-10 py-4 rounded-xl"
+                  className="text-center cursor-pointer text-white bg-primary hover:opacity-60 px-10 py-4 rounded-xl"
                 >
                   <p className="text-lg font-semibold">Mua ngay</p>
                   <p className="text-md font-thin">

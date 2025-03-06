@@ -136,7 +136,6 @@ export default function UserDetail() {
           body={(row) => row.finalAmount.toLocaleString()}
           sortable
         ></Column>
-        <Column field="status" header="Trạng thái" sortable></Column>
       </DataTable>
     </div>
   );

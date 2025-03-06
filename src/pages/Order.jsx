@@ -30,7 +30,7 @@ function Order() {
       const decodedPayload = atob(base64);
 
       return JSON.parse(decodedPayload);
-    } catch (e) {
+    } catch {
       return null;
     }
   };

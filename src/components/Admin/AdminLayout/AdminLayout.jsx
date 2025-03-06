@@ -101,7 +101,8 @@ export default function AdminLayout({ children }) {
               <Image
                 src={logo}
                 alt="Shop Logo"
-                className="h-12 w-auto max-w-[150px]"
+                className="h-12 w-auto max-w-[150px] cursor-pointer"
+                onClick={() => navigate("/admin")}
               />
             </div>
           }

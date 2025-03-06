@@ -53,11 +53,7 @@ function Cart() {
 
   const navigate = useNavigate();
 
-  const coupons = [
-    { code: "DISCOUNT10", discount: 10, name: "Giảm 10%" },
-    { code: "DISCOUNT20", discount: 20, name: "Giảm 20%" },
-    { code: "DISCOUNT30", discount: 30, name: "Giảm 30%" },
-  ];
+  const [coupons, setCoupons] = useState([]);
 
   const colors = [
     { name: "Đen", code: "black" },
@@ -188,6 +184,19 @@ function Cart() {
     fetchCart();
   }, [user]);
 
+  useEffect(() => {
+    const fetchCoupons = async () => {
+      try {
+        const response = await axios.get("https://localhost:7274/api/Coupons");
+        setCoupons(response.data);
+      } catch (error) {
+        console.error("Không thể tải danh sách coupon", error);
+      }
+    };
+
+    fetchCoupons();
+  }, []);
+
   const steps = [
     "Kiểm tra giỏ hàng",
     "Thông tin mua hàng",
@@ -265,19 +274,6 @@ function Cart() {
           axios.post("https://localhost:7274/api/OrderDetails", detail)
         )
       );
-
-      if (coupon) {
-        const couponDetails = {
-          orderId: orderId,
-          couponId: coupon,
-          discountAmount: discountPrice(totalPrice(cart), coupon),
-        };
-        await axios.post(
-          "https://localhost:7274/api/OrderCoupons",
-          couponDetails
-        );
-      }
-
       toast.current.show({
         severity: "success",
         summary: "Thông báo",
@@ -532,14 +528,7 @@ function Cart() {
     if (coupon) {
       const couponCode = coupons.find((c) => c.code === coupon);
       if (couponCode) {
-        return totalprice - totalprice * (1 - couponCode.discount / 100);
-      } else {
-        toast.current.show({
-          severity: "error",
-          summary: "Thông báo",
-          detail: "Coupon không hợp lệ!",
-          life: 3000,
-        });
+        return totalprice - totalprice * (1 - couponCode.value / 100);
       }
     }
     return 0;
@@ -549,14 +538,7 @@ function Cart() {
     if (coupon) {
       const couponCode = coupons.find((c) => c.code === coupon);
       if (couponCode) {
-        return totalprice * (1 - couponCode.discount / 100);
-      } else {
-        toast.current.show({
-          severity: "error",
-          summary: "Thông báo",
-          detail: "Coupon không hợp lệ!",
-          life: 3000,
-        });
+        return totalprice * (1 - couponCode.value / 100);
       }
     }
     return totalprice;
@@ -692,18 +674,6 @@ function Cart() {
       });
     }
   };
-
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-
-    return `${year}${month}${day}${hours}${minutes}${seconds}`;
-  };
-
   return (
     <>
       <Toast ref={toast} />
@@ -713,7 +683,10 @@ function Cart() {
           <span>Giỏ hàng của bạn đang trống</span>
           <span>Hãy chọn thêm sản phẩm để mua sắm nhé</span>
           <button
-            onClick={() => {navigate("/");window.location.reload();}}
+            onClick={() => {
+              navigate("/");
+              window.location.reload();
+            }}
             className="mt-10 font-normal border border-primary py-4 px-6 rounded-lg hover:bg-primary hover:text-white hover:scale-125 transition-transform duration-200 ease-in-out"
           >
             Quay lại trang chủ
